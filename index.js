@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 
 app.get('/', function (req, res) {
   connection.connect();
-  connection.query('SELECT * FROM census_learn_sql LIMIT 0, 2', function (error, results, fields) {
+  connection.query('SELECT * FROM census_learn_sql LIMIT 0, 10', function (error, results, fields) {
     if (error) throw error;
     res.json(results);
   });

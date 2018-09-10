@@ -21,9 +21,13 @@ class App extends React.Component {
 
   render() {
     console.log(this.state);
+    if(!this.state.data) return <h2 className="title is-2">Loading...</h2>;
     return (
       <main>
         <h1>Visualize Data React</h1>
+        {this.state.data.map((record, i) =>
+          <h3 key={i}>{record.age}</h3>
+        )}
       </main>
     );
   }
