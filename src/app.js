@@ -12,15 +12,19 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount(){
-    // console.log(this.props.match.params.cat);
+  getData(arg){
     axios({
       method: 'GET',
-      url: `http://localhost:4000/age`,
+      url: `http://localhost:4000/${arg}`,
       dataType: 'jsonp'
     })
       .then(res => this.setState({ data: res.data }))
       .catch(err => console.log(err));
+  }
+
+  componentDidMount(){
+    // console.log(this.props.match.params.cat);
+    this.getData('age');
   }
 
   handleChange = ({ target: {value} }) => {
@@ -60,7 +64,7 @@ class App extends React.Component {
                 <td>{i}</td>
                 <td>{record.age}</td>
                 <td>{record.count}</td>
-                <td>{record.average}</td>
+                <td>{record.average_age}</td>
               </tr>
             )}
           </tbody>
