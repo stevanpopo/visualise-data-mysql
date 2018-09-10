@@ -13,9 +13,10 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    // console.log(this.props.match.params.cat);
     axios({
       method: 'GET',
-      url: 'http://localhost:4000/',
+      url: `http://localhost:4000/age`,
       dataType: 'jsonp'
     })
       .then(res => this.setState({ data: res.data }))

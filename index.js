@@ -17,9 +17,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function (req, res) {
-  connection.query('SELECT * FROM census_learn_sql LIMIT 0, 10', function (error, results, fields) {
+app.get('/:cat', function (req, res) {
+  console.log('ids', req.params.cat);
+  connection.query(`SELECT ${req.params.cat}, COUNT(*), AVG(age) FROM census_learn_sql GROUP BY ${req.params.cat}`, function (error, results, fields) {
     if (error) throw error;
+    console.log(results);
+
     res.json(results);
   });
 });
