@@ -42,9 +42,28 @@ class App extends React.Component {
           </div>
         </div>
 
-        {this.state.data.map((record, i) =>
-          <h3 key={i}>{record.education}</h3>
-        )}
+        <table className="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team</th>
+              <th>Count</th>
+              <th>Average Wage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.data.map((record, i) =>
+              <tr key={i}>
+                <td>ID</td>
+                <td>{record.education}</td>
+                <td>{record.age}</td>
+                <td>Else</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+
+
       </main>
     );
   }
