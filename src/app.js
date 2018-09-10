@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import 'bulma';
 // import './scss/main.scss';
 
 class App extends React.Component {
@@ -25,8 +26,20 @@ class App extends React.Component {
     return (
       <main>
         <h1>Visualize Data React</h1>
+
+        <div className='control'>
+          <div className='select'>
+            <select>
+              <option>Select dropdown</option>
+              {Object.keys(this.state.data[0]).map((key, i) =>
+                <option key={i}>{key}</option>
+              )}
+            </select>
+          </div>
+        </div>
+
         {this.state.data.map((record, i) =>
-          <h3 key={i}>{record.age}</h3>
+          <h3 key={i}>{record.education}</h3>
         )}
       </main>
     );
