@@ -7,7 +7,9 @@ import 'bulma';
 class App extends React.Component {
   constructor(){
     super();
-    this.state = {};
+    this.state = {
+      selected: 'education'
+    };
   }
 
   componentDidMount(){
@@ -46,7 +48,7 @@ class App extends React.Component {
           <thead>
             <tr>
               <th>#</th>
-              <th>Team</th>
+              <th>{this.state.selected}</th>
               <th>Count</th>
               <th>Average Wage</th>
             </tr>
@@ -55,7 +57,7 @@ class App extends React.Component {
             {this.state.data.map((record, i) =>
               <tr key={i}>
                 <td>ID</td>
-                <td>{record.education}</td>
+                <td>{record[this.state.selected]}</td>
                 <td>{record.age}</td>
                 <td>Else</td>
               </tr>
