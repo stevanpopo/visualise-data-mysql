@@ -15,11 +15,7 @@ class App extends React.Component {
       url: 'http://localhost:4000/',
       dataType: 'jsonp'
     })
-      .then(response => {
-        console.log(response);
-        response.json();
-      })
-      // .then(posts => this.setState({ posts }))
+      .then(res => this.setState({ data: res.data }))
       .catch(err => console.log(err));
   }
 

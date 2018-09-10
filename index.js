@@ -18,6 +18,7 @@ const connection = mysql.createConnection({
 // • Table: census_learn_sql --> table to request
 
 // console.log(connection);
+
 app.use(express.static(`${__dirname}/public`));
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
