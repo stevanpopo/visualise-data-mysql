@@ -18,38 +18,51 @@ class App extends React.Component {
       url: `http://localhost:4000/${arg}`,
       dataType: 'jsonp'
     })
-      .then(res => this.setState({ data: res.data }))
+      .then(res => {
+        // console.log(res);
+        this.setState({ data: res.data });
+      })
       .catch(err => console.log(err));
   }
 
   componentDidMount(){
     // console.log(this.props.match.params.cat);
-    this.getData('age');
+    axios({
+      method: 'GET',
+      url: `http://localhost:4000/undefined`,
+      dataType: 'jsonp'
+    })
+      .then(res => {
+        this.setState({ keys: res.data });
+      })
+      .catch(err => console.log(err));
   }
 
   handleChange = ({ target: {value} }) => {
-    this.setState({ selected: value });
+    this.getData(value);
+    // this.setState({ selected: value });
   }
 
   render() {
     console.log(this.state);
-    if(!this.state.data) return <h2 className="title is-2">Loading...</h2>;
+    if(!this.state.keys) return <h2 className="title is-2">Loading...</h2>;
     return (
       <main>
         <h1>Visualize Data React</h1>
+        {/* <h2>{this.state.keys[0]}</h2> */}
 
         <div className='control'>
           <div className='select'>
             <select onChange={this.handleChange}>
               <option>Select dropdown</option>
-              {Object.keys(this.state.data[0]).map((key, i) =>
+              {this.state.keys.map((key, i) =>
                 <option key={i}>{key}</option>
               )}
             </select>
           </div>
         </div>
 
-        <table className="table">
+        {this.state.data && <table className="table">
           <thead>
             <tr>
               <th>#</th>
@@ -68,7 +81,7 @@ class App extends React.Component {
               </tr>
             )}
           </tbody>
-        </table>
+        </table>}
 
 
       </main>

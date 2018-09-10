@@ -17,14 +17,27 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/:cat', function (req, res) {
-  console.log('ids', req.params.cat);
-  connection.query(`SELECT ${req.params.cat}, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY ${req.params.cat}`, function (error, results, fields) {
-    if (error) throw error;
-    console.log(results);
+let keys;
 
-    res.json(results);
-  });
+app.get('/:cat', function (req, res) {
+  if(req.params.cat === 'undefined'){
+    console.log('no cat');
+    connection.query('SELECT * FROM census_learn_sql LIMIT 0,1', function (error, results, fields) {
+      if (error) throw error;
+      // console.log(results[0]);
+      keys = Object.keys(results[0]);
+      console.log(keys);
+      res.json(keys);
+    });
+  } else {
+    console.log('there is a cat', req.params.cat);
+    connection.query(`SELECT ${req.params.cat}, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY ${req.params.cat}`, function (error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+
+      res.json(results);
+    });
+  }
 });
 
 app.listen(port, () => console.log(`Express running on port ${port}`));
