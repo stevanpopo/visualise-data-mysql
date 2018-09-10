@@ -51,16 +51,16 @@ class App extends React.Component {
               <th>#</th>
               <th>{this.state.selected}</th>
               <th>Count</th>
-              <th>Average Wage</th>
+              <th>Average Age</th>
             </tr>
           </thead>
           <tbody>
             {this.state.data.map((record, i) =>
               <tr key={i}>
-                <td>ID</td>
-                <td>{record[this.state.selected]}</td>
+                <td>{i}</td>
                 <td>{record.age}</td>
-                <td>Else</td>
+                <td>{record.count}</td>
+                <td>{record.average}</td>
               </tr>
             )}
           </tbody>

@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 
 app.get('/:cat', function (req, res) {
   console.log('ids', req.params.cat);
-  connection.query(`SELECT ${req.params.cat}, COUNT(*), AVG(age) FROM census_learn_sql GROUP BY ${req.params.cat}`, function (error, results, fields) {
+  connection.query(`SELECT ${req.params.cat}, COUNT(*) as count, AVG(age) as average FROM census_learn_sql GROUP BY ${req.params.cat}`, function (error, results, fields) {
     if (error) throw error;
     console.log(results);
 
