@@ -20,6 +20,10 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  handleChange = ({ target: {value} }) => {
+    this.setState({ selected: value });
+  }
+
   render() {
     console.log(this.state);
     if(!this.state.data) return <h2 className="title is-2">Loading...</h2>;
@@ -29,7 +33,7 @@ class App extends React.Component {
 
         <div className='control'>
           <div className='select'>
-            <select>
+            <select onChange={this.handleChange}>
               <option>Select dropdown</option>
               {Object.keys(this.state.data[0]).map((key, i) =>
                 <option key={i}>{key}</option>
