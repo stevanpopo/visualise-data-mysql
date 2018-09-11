@@ -7,9 +7,7 @@ import './scss/main.scss';
 class App extends React.Component {
   constructor(){
     super();
-    this.state = {
-      selected: 'education'
-    };
+    this.state = {};
   }
 
   getData(arg){
@@ -18,10 +16,7 @@ class App extends React.Component {
       url: `http://localhost:4000/${arg}`,
       dataType: 'jsonp'
     })
-      .then(res => {
-        // console.log(res);
-        this.setState({ data: res.data });
-      })
+      .then(res => this.setState({ data: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -30,10 +25,9 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    // console.log(this.props.match.params.cat);
     axios({
       method: 'GET',
-      url: `http://localhost:4000/undefined`,
+      url: 'http://localhost:4000/undefined',
       dataType: 'jsonp'
     })
       .then(res => {
