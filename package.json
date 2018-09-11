@@ -12,7 +12,8 @@
     "test:server": "nyc mocha test/server/**/*_spec.js --require test/server/helper --recursive --exit",
     "seed": "node db/seeds",
     "build": "webpack -p",
-    "start": "yarn build && node index"
+    "start": "yarn build && node index",
+    "heroku-postbuild": "webpack --config webpack.prod.js",
   },
   "author": "Students",
   "license": "ISC",
