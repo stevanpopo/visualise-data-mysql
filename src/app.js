@@ -66,8 +66,8 @@ class App extends React.Component {
           </div>
         </div>
 
-        {this.state.data && <h3>There are {this.state.data.rowsCount.total_rows} rows in response to this query.</h3>}
-        {this.state.data && this.state.data.rowsCount.total_rows > 100 && <h3>{this.state.data.rowsCount.total_rows - 100} rows are not being displayed due to a 100 row display limit.</h3>}
+        {this.state.data && <p>There are {this.state.data.rowsCount.total_rows} rows in response to this query. {this.state.data && this.state.data.rowsCount.total_rows > 100 && <span className="has-text-weight-semibold">{this.state.data.rowsCount.total_rows - 100} rows are not being displayed due to a 100 row display limit.</span>}</p>}
+
 
         {this.state.data && <table className="table is-striped">
           <thead>
@@ -84,7 +84,7 @@ class App extends React.Component {
                 <td>{i}</td>
                 <td className="col-2">{row[this.state.selected]}</td>
                 <td>{row.count}</td>
-                <td>{row.average_age}</td>
+                <td>{row.average_age.toFixed(1)}</td>
               </tr>
             )}
           </tbody>
