@@ -36,7 +36,7 @@ app.get('/:cat', function (req, res) {
     });
   } else {
     // console.log('there is a cat', req.params.cat);
-    const queryString = 'SELECT SQL_CALC_FOUND_ROWS `'+req.params.cat+'`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `'+req.params.cat+'` ORDER BY COUNT(*) DESC LIMIT 100 ; SELECT FOUND_ROWS() as total_rows'
+    const queryString = 'SELECT SQL_CALC_FOUND_ROWS `'+req.params.cat+'`, COUNT(*) as count, AVG(age) as averageAge FROM census_learn_sql GROUP BY `'+req.params.cat+'` ORDER BY COUNT(*) DESC LIMIT 100 ; SELECT FOUND_ROWS() as totalRows'
     // const queryString2 = 'SELECT FOUND_ROWS();'
 
     console.log('queryString', queryString);
