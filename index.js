@@ -1,9 +1,16 @@
 const express = require('express');
 const app = express();
-const { port, dbDetails } = require('./config/environment');
+const { port, dbUser, dbPass, dbName, dbHost } = require('./config/environment');
 
 const mysql = require('mysql');
-const connection = mysql.createConnection(dbDetails);
+
+const connection = mysql.createConnection({
+  host: dbHost,
+  user: dbUser,
+  password: dbPass,
+  database: dbName,
+  multipleStatements: true
+});
 
 app.use(express.static(`${__dirname}/public`));
 app.use(function(req, res, next) {
