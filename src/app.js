@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import 'bulma';
-// import './scss/main.scss';
+import './scss/main.scss';
 
 class App extends React.Component {
   constructor(){
@@ -47,9 +47,9 @@ class App extends React.Component {
     console.log(this.state);
     if(!this.state.keys) return <h2 className="title is-2">Loading...</h2>;
     return (
-      <main>
-        <h1>Visualize Data React</h1>
-        {/* <h2>{this.state.keys[0]}</h2> */}
+      <main className="container">
+        <h1 className="title is-1">Visualize Data React</h1>
+        <h3 className="subtitle">Choose a data point to show in the table...</h3>
 
         <div className='control'>
           <div className='select'>
@@ -62,11 +62,11 @@ class App extends React.Component {
           </div>
         </div>
 
-        {this.state.data && <table className="table">
+        {this.state.data && <table className="table is-striped">
           <thead>
             <tr>
               <th>#</th>
-              <th>{this.state.selected}</th>
+              <th className="col-2">{this.state.selected}</th>
               <th>Count</th>
               <th>Average Age</th>
             </tr>
@@ -75,14 +75,13 @@ class App extends React.Component {
             {this.state.data.map((record, i) =>
               <tr key={i}>
                 <td>{i}</td>
-                <td>{record[this.state.selected]}</td>
+                <td className="col-2">{record[this.state.selected]}</td>
                 <td>{record.count}</td>
                 <td>{record.average_age}</td>
               </tr>
             )}
           </tbody>
         </table>}
-
 
       </main>
     );
