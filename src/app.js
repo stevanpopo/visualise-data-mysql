@@ -66,6 +66,9 @@ class App extends React.Component {
           </div>
         </div>
 
+        {this.state.data && <h3>There are {this.state.data.rowsCount.total_rows} rows in response to this query.</h3>}
+        {this.state.data && this.state.data.rowsCount.total_rows > 100 && <h3>{this.state.data.rowsCount.total_rows - 100} rows are not being displayed due to a 100 row display limit.</h3>}
+
         {this.state.data && <table className="table is-striped">
           <thead>
             <tr>
@@ -76,21 +79,16 @@ class App extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data.data.map((record, i) =>
+            {this.state.data.demographicData.map((row, i) =>
               <tr key={i}>
                 <td>{i}</td>
-                <td className="col-2">{record[this.state.selected]}</td>
-                <td>{record.count}</td>
-                <td>{record.average_age}</td>
+                <td className="col-2">{row[this.state.selected]}</td>
+                <td>{row.count}</td>
+                <td>{row.average_age}</td>
               </tr>
             )}
           </tbody>
-          {/* <h3>There are {this.state.data.rowsCount} rows in response to this query.</h3> */}
         </table>}
-
-        {/* {this.state.data && <h3>There are {this.state.data.rowsCount} rows in response to this query.</h3>} */}
-        {/* {this.state.data && this.state.data.rowsCount > 100 && <h3>There are {this.state.data.rowsCount - 100} rows that are not being displayed.</h3>} */}
-
       </main>
     );
   }

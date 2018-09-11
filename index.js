@@ -44,7 +44,7 @@ app.get('/:cat', function (req, res) {
       if (error) throw error;
       // console.log(results[0]);
       // console.log(results[1]);
-      res.json({ demographicData: results[0], rowsCount: results[1] });
+      res.json({ demographicData: results[0], rowsCount: results[1][0] });
     });
 
     // console.log(queryResult);
