@@ -12,7 +12,6 @@ const connection = mysql.createConnection({
   multipleStatements: true
 });
 
-app.use(express.static(`${__dirname}/public`));
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -37,6 +36,9 @@ app.get('/:cat', function (req, res) {
     });
   }
 });
+
+app.use(express.static(`${__dirname}/public`));
+app.get('/*',(req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 app.listen(port, () => console.log(`Express running on port ${port}`));
 module.exports = app;
