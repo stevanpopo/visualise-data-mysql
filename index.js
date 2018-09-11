@@ -7,7 +7,8 @@ const connection = mysql.createConnection({
   host: 'none',
   user: 'none',
   password: 'none',
-  database: 'none'
+  database: 'none',
+  multipleStatements: true
 });
 
 app.use(express.static(`${__dirname}/public`));
@@ -34,16 +35,19 @@ app.get('/:cat', function (req, res) {
       res.json(keys);
     });
   } else {
-    console.log('there is a cat', req.params.cat);
-    // connection.query('SELECT `education`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `education`', function (error, results, fields) {
-    const queryString = 'SELECT `'+req.params.cat+'`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `'+req.params.cat+'` ORDER BY COUNT(*) DESC LIMIT 100';
-    console.log('queryString', queryString);
-    connection.query(queryString, function (error, results, fields) {
-      if (error) throw error;
-      console.log(results);
+    // console.log('there is a cat', req.params.cat);
+    const queryString = 'SELECT SQL_CALC_FOUND_ROWS `'+req.params.cat+'`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `'+req.params.cat+'` ORDER BY COUNT(*) DESC LIMIT 100 ; SELECT FOUND_ROWS()'
+    // const queryString2 = 'SELECT FOUND_ROWS();'
 
-      res.json(results);
+    console.log('queryString', queryString);
+    connection.query(queryString, [1,2], function (error, results, fields) {
+      if (error) throw error;
+      // console.log(results[0]);
+      // console.log(results[1]);
+      res.json({ data: results[0], rowsCount: results[1] });
     });
+
+    // console.log(queryResult);
   }
 });
 
