@@ -25,6 +25,10 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   componentDidMount(){
     // console.log(this.props.match.params.cat);
     axios({
@@ -56,7 +60,7 @@ class App extends React.Component {
             <select onChange={this.handleChange}>
               <option>Select dropdown</option>
               {this.state.keys.map((key, i) =>
-                <option key={i}>{key}</option>
+                <option key={i}>{this.capitalizeFirstLetter(key)}</option>
               )}
             </select>
           </div>
@@ -66,7 +70,7 @@ class App extends React.Component {
           <thead>
             <tr>
               <th>#</th>
-              <th className="col-2">{this.state.selected}</th>
+              <th className="col-2">{this.capitalizeFirstLetter(this.state.selected)}</th>
               <th>Count</th>
               <th>Average Age</th>
             </tr>
