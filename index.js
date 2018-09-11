@@ -22,6 +22,10 @@ let keys;
 app.get('/:cat', function (req, res) {
   if(req.params.cat === 'undefined'){
     console.log('no cat');
+    // connection.query('SHOW COLUMNS FROM census_learn_sql', function (error, results, fields) {
+    //   if (error) throw error;
+    //   console.log(results);
+    // });
     connection.query('SELECT * FROM census_learn_sql LIMIT 0,1', function (error, results, fields) {
       if (error) throw error;
       // console.log(results[0]);
@@ -31,7 +35,10 @@ app.get('/:cat', function (req, res) {
     });
   } else {
     console.log('there is a cat', req.params.cat);
-    connection.query(`SELECT ${req.params.cat}, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY ${req.params.cat}`, function (error, results, fields) {
+    // connection.query('SELECT `education`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `education`', function (error, results, fields) {
+    const queryString = 'SELECT '+req.params.cat+', COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY '+req.params.cat
+    console.log('queryString', queryString);
+    connection.query(queryString, function (error, results, fields) {
       if (error) throw error;
       console.log(results);
 

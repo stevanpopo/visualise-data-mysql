@@ -40,7 +40,7 @@ class App extends React.Component {
 
   handleChange = ({ target: {value} }) => {
     this.getData(value);
-    // this.setState({ selected: value });
+    this.setState({ selected: value });
   }
 
   render() {
@@ -75,7 +75,7 @@ class App extends React.Component {
             {this.state.data.map((record, i) =>
               <tr key={i}>
                 <td>{i}</td>
-                <td>{record.age}</td>
+                <td>{record[this.state.selected]}</td>
                 <td>{record.count}</td>
                 <td>{record.average_age}</td>
               </tr>
