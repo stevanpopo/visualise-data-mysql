@@ -36,7 +36,7 @@ app.get('/:cat', function (req, res) {
   } else {
     console.log('there is a cat', req.params.cat);
     // connection.query('SELECT `education`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `education`', function (error, results, fields) {
-    const queryString = 'SELECT `'+req.params.cat+'`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `'+req.params.cat+'` ORDER BY COUNT(*) DESC';
+    const queryString = 'SELECT `'+req.params.cat+'`, COUNT(*) as count, AVG(age) as average_age FROM census_learn_sql GROUP BY `'+req.params.cat+'` ORDER BY COUNT(*) DESC LIMIT 100';
     console.log('queryString', queryString);
     connection.query(queryString, function (error, results, fields) {
       if (error) throw error;
