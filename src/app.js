@@ -76,7 +76,7 @@ class App extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data.map((record, i) =>
+            {this.state.data.data.map((record, i) =>
               <tr key={i}>
                 <td>{i}</td>
                 <td className="col-2">{record[this.state.selected]}</td>
@@ -85,7 +85,11 @@ class App extends React.Component {
               </tr>
             )}
           </tbody>
+          {/* <h3>There are {this.state.data.rowsCount} rows in response to this query.</h3> */}
         </table>}
+
+        {/* {this.state.data && <h3>There are {this.state.data.rowsCount} rows in response to this query.</h3>} */}
+        {/* {this.state.data && this.state.data.rowsCount > 100 && <h3>There are {this.state.data.rowsCount - 100} rows that are not being displayed.</h3>} */}
 
       </main>
     );
